@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>286 Validate US telephone numbers</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+	function telephoneCheck(str) {
+	    console.log(str.length);
+
+	    for (var i = 0; i < str.length; i++) {
+
+	        // condition 1 length 10 and no special characters
+	        if ( str.length === 10 && (/[0-9]/.test(str[i])) ) {
+	            return true;
+	        }
+	        if ( /[A-Z!@#\$%\^\&*\\+=._]/.test(str[i]) || /[a-z]/.test(str[i]) ) {
+	            return false;
+	        } else {
+	            // condition 2 length 12 and spaces and dashes
+	            if ( str.length === 12 && ( (str[3] === ' ' && str[7] === ' ') || (str[3] === '-' && str[7] === '-') ) ) {
+	                return true;
+	            }
+	            // condition 3 length 13 and parenthesis and dashes
+	            if (str.length === 13 && (str[0] === '(' && str[4] === ')' && str[8] === '-') ) {
+	                return true;
+	            }
+
+	            // condition 4 length 14 and parenthesis and dashes
+	            if (str.length >= 14) {
+	                if ( str[0] === '1' ) {
+	                    if ( (str[1] === ' ' && ( str[5] === ' ' && str[9] === ' ') || str[5] === '-' && str[9] === '-') ) {
+	                        return true;
+	                    }
+	                    if ( (str[1] === ' ' && str[2] === '(' && str[6] === ')' && str[7] === ' ' && str[11] === '-' ) ) {
+	                        return true;
+	                    }
+	                    if ( (str[1] === '(' && str[5] === ')' && str[9] === '-') ) {
+	                        return true;
+	                    }
+	                }
+	                if ( str[0] === '(') {
+	                    if ( (str[4] === ')' && str[5] === ' ' && str[9] === '-') ) {
+	                        return true;
+	                    }
+	                }
+	            }
+
+	        }
+	       
+	    }
+	    return false;
+	}
+
+
+	/*
+	simplified
+	// ? makes preceding token optional
+	// ^ matches the starting position within the string. matches starting position of any line
+	// \( \) - defines marked subexpression
+	// | - or expression
+	// {} - precding item is matched exactly n times. want 3 digits  
+	// (1\s?)? - the space is optional and 1 is optional
+	// (\(\d{3}\)|\d{3}) -
+	    (\d{3}\) - with the ()
+	    | - or expression
+	    \d{3} - withou ()
+	// $ - matches ending position of string or position just before a string-ending newline. matches ending position of any line
+	// [\s\-]? - optional space or dash
+	// \d{3}[\s\-]? - another 3 digits with an optional space or dash
+	// \d{4} - end with four digits
+
+	function telephoneCheck(str) {
+	   var regex = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+	   return regex.test(str);
+	}
+	*/
+
+	/*
+	Return true if the passed string is a valid US phone number.
+
+	The user may fill out the form field any way they choose as long as it is a valid US number. The following are examples of valid formats for US numbers (refer to the tests below for other variants):
+
+	For this challenge you will be presented with a string such as 800-692-7753 or 8oo-six427676;laskdjf. Your job is to validate or reject the US phone number based on any combination of the formats provided above. The area code is required. If the country code is provided, you must confirm that the country code is 1. Return true if the string is a valid US phone number; otherwise return false.
+
+	*/	
+</script>
+
+</body>
+</html>
