@@ -1,6 +1,4 @@
 # Advanced-Algorithm-Scripting
-
-# Advanced-Algorithm-Scripting
 ## Javascript algorithms
 
 ## Algorithms:
